@@ -1,0 +1,6 @@
+// how to override default bootstrap variables:
+// $spacer: 2rem;
+
+@import "bootstrap/scss/bootstrap";
+
+@import "vue-toast-notification/dist/theme-bootstrap.css";

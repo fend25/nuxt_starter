@@ -1,0 +1,5 @@
+# ignore all except src
+
+.data
+.nuxt
+.output

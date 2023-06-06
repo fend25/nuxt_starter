@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:15.3
+    container_name: nuxt-starter-db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.data/postgres:/var/lib/postgresql/data
+    env_file: .env
+
+  app:
+    container_name: nuxt-starter-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    env_file: .env
+    # command: ls -a ./.output/server/node_modules/unstorage
+    command: yarn start
+    environment:
+      - POSTGRES_HOST=db
