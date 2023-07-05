@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+const route = useRoute()
+onMounted(async () => {
+  console.log(route.params)
+})
 </script>
 
 <template>

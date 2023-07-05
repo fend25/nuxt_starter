@@ -1,8 +1,19 @@
 <script lang="tsx" setup>
 import {useMainStore} from '~/stores/main.store'
 import NavLink from './components/NavLink'
+import {useLogin} from '~/composables/login'
 
 const {user} = useMainStore()
+
+const route = useRoute()
+const {saveActionAndLoginVia} = useLogin()
+
+const doLogin = async () => {
+  await saveActionAndLoginVia('google', {
+    path: route.fullPath,
+    action: 'none'
+  })
+}
 </script>
 
 <template>
@@ -40,7 +51,7 @@ const {user} = useMainStore()
             </template>
             <template v-else>
               <li class="nav-item">
-                <a class="nav-link" href="/api/auth/login/google">{{ $t('common.login') }}</a>
+                <a class="nav-link" href="#" @click="doLogin">{{ $t('common.login') }}</a>
               </li>
             </template>
           </ul>
